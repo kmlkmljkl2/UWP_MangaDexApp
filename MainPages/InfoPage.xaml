@@ -29,8 +29,8 @@
             <TextBlock Grid.Column="2" Grid.Row="2" IsTextSelectionEnabled="True" FontSize="24" x:Name="Description" TextWrapping="Wrap" />
         </ScrollViewer>
 
-        <ScrollViewer x:Name="ChapterScrollView" Grid.RowSpan="4"  Grid.Column="2" Grid.Row="3" Visibility="Collapsed">
-            <ListView x:Name="List" x:FieldModifier="public" ItemsSource="{x:Bind ChapterList, Mode=OneWay}" Visibility="Collapsed" PointerWheelChanged="ChapterScrollView_PointerWheelChanged" RightTapped="List_RightTapped" IsRightTapEnabled="True" IsItemClickEnabled="True" IsTapEnabled="True" ItemClick="List_ItemClick" ManipulationMode="Scale">
+        <ScrollViewer x:Name="ChapterScrollView" Grid.RowSpan="4"  Grid.Column="2" Grid.Row="3" Visibility="Visible">
+            <ListView x:Name="List" x:FieldModifier="public" ItemsSource="{x:Bind ChapterList, Mode=OneWay}" Visibility="Visible" PointerWheelChanged="ChapterScrollView_PointerWheelChanged" RightTapped="List_RightTapped" IsRightTapEnabled="True" IsItemClickEnabled="True" IsTapEnabled="True" ItemClick="List_ItemClick" ManipulationMode="Scale">
                 <ListView.Resources>
                     <MenuFlyout x:Name="ListViewMenuFlyout">
                         <MenuFlyoutItem Text="Mark as Unread" Click="MenuFlyoutItem_Click" Tag="unread" />
