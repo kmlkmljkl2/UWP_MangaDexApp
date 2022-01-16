@@ -1,0 +1,51 @@
+﻿<Page
+    x:Class="UWP_MangaDexApp.MainPages.ReadPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:System"
+    xmlns:uc="using:UWP_MangaDexApp.UserControls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*" />
+            <RowDefinition Height="118*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="46*" />
+            <ColumnDefinition Width="39*" />
+            <ColumnDefinition Width="130*" />
+            <ColumnDefinition Width="85*" />
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.ColumnSpan="10" Grid.RowSpan="10">
+            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*" />
+                    <RowDefinition Height="118*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="46*" />
+                    <ColumnDefinition Width="39*" />
+                    <ColumnDefinition Width="130*" />
+                    <ColumnDefinition Width="85*" />
+                </Grid.ColumnDefinitions>
+                <ListView x:Name="list" x:FieldModifier="public" Grid.Column="2" ScrollViewer.HorizontalScrollMode="Auto" ManipulationMode="Scale" Grid.RowSpan="2">
+                    <ListView.ItemTemplate>
+                        <!--<ListView.ItemTemplate>-->
+                        <DataTemplate x:DataType="data:Uri">
+                            <uc:ImageTest UriSource="{x:Bind}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <!--</ListView.ItemTemplate>-->
+                </ListView>
+                <Button Content="" Click="NextPageBTN_Click" x:Name="NextBTN" VerticalAlignment="Stretch" x:FieldModifier="public" HorizontalAlignment="Stretch" Grid.Column="3" FocusVisualSecondaryBrush="{x:Null}"  FocusVisualPrimaryBrush="{x:Null}" Grid.RowSpan="2" BorderBrush="{x:Null}" Foreground="{x:Null}" Background="{ThemeResource AppBarBackgroundThemeBrush}" Opacity="0" />
+                <Button Content="" VerticalAlignment="Stretch" x:Name="BackBTN" Click="PreviousPageBTN_Click" x:FieldModifier="public" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" FocusVisualSecondaryBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"  FocusVisualPrimaryBrush="{x:Null}" Grid.RowSpan="2" Background="{ThemeResource AppBarBackgroundThemeBrush}" Opacity="0" />
+                <Button Content="Fullscreen" Visibility="Collapsed" VerticalAlignment="Stretch" Grid.Column="1" HorizontalAlignment="Stretch" Background="{x:Null}" Opacity="0.3" FontSize="24" FontWeight="Normal" Click="FullScreenBTN_Click" />
+            </Grid>
+        </ScrollViewer>
+        <Button Content="Back" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{x:Null}" Click="BTNBack_Click" Opacity="0.3" FontSize="24" />
+    </Grid>
+</Page>

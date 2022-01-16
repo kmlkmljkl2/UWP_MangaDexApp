@@ -1,0 +1,62 @@
+﻿<Page
+    x:Class="UWP_MangaDexApp.Settings.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="36*" />
+                <RowDefinition Height="106*" />
+                <RowDefinition Height="141*" />
+                <RowDefinition Height="142*" />
+                <RowDefinition Height="141*" />
+                <RowDefinition Height="142*" />
+                <RowDefinition Height="141*" />
+                <RowDefinition Height="231*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="153*" />
+                <ColumnDefinition Width="111*" />
+                <ColumnDefinition Width="128*" />
+                <ColumnDefinition Width="568*" />
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0" Grid.Row="0">
+                <TextBlock Text="For info hover over the names"></TextBlock>
+            </Viewbox>
+            <TreeView Grid.Column="4" Grid.Row="1" SelectionMode="Multiple" x:Name="ChapLangFilter" />
+            <TreeView Grid.Column="4" Grid.Row="2" SelectionMode="Multiple" x:Name="OriginalFilter" />
+            <Viewbox Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="1">
+                <TextBlock  Text="Chapter Language Filter:" />
+            </Viewbox>
+            <Viewbox Grid.Row="2" Grid.ColumnSpan="2">
+                <TextBlock Text="Original Language Filter"></TextBlock>
+            </Viewbox>
+            <Viewbox Grid.Row="3" Grid.ColumnSpan="1">
+                <TextBlock Text="Content Filter"></TextBlock>
+            </Viewbox>
+            <StackPanel Grid.Row="3" Grid.Column="3" VerticalAlignment="Center">
+                <CheckBox Content="Safe" IsChecked="{x:Bind Settingz.Safe, Mode=OneWay}" Click="CheckBox_Click" />
+                <CheckBox Content="Suggestive" IsChecked="{x:Bind Settingz.Suggestive, Mode=TwoWay}" Click="CheckBox_Click" />
+                <CheckBox Content="Erotica" IsChecked="{x:Bind Settingz.Erotica, Mode=TwoWay}" Click="CheckBox_Click" />
+                <CheckBox Content="Pornographic" IsChecked="{x:Bind Settingz.Pornographic, Mode=TwoWay}" Click="CheckBox_Click" />
+            </StackPanel>
+            <Viewbox Grid.Row="4" Grid.ColumnSpan="2">
+                <TextBlock Text="Use Port 443 for MangaDex"></TextBlock>
+            </Viewbox>
+            <StackPanel Grid.Row="4" Grid.Column="3" VerticalAlignment="Center">
+                <CheckBox Content="Port 443" IsChecked="{x:Bind Settingz.DifferentPort, Mode=TwoWay}" Click="CheckBox_Click"></CheckBox>
+            </StackPanel>
+            <Viewbox Grid.Row="5" Grid.ColumnSpan="2">
+                <TextBlock Text="Use Data Saver for Images"></TextBlock>
+            </Viewbox>
+            <StackPanel Grid.Row="5" Grid.Column="3" VerticalAlignment="Center">
+                <CheckBox Content="Data Saver" IsChecked="{x:Bind Settingz.DataSaver, Mode=TwoWay}" Click="CheckBox_Click"></CheckBox>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>
