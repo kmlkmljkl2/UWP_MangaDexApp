@@ -148,6 +148,7 @@ namespace UWP_MangaDexApp.MainPages
             if (CameFromSettings)
             {
                 MainWindow.MainPage.GoToSettings();
+                CameFromSettings = false;
             }
             else
             {

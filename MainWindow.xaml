@@ -4,7 +4,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:data="using:MangaDexSharp.Resources"
+    xmlns:data="using:MangaDexSharp.Resources" 
+    xmlns:uc="using:UWP_MangaDexApp.UserControls"
     mc:Ignorable="d">
 
     <Grid>
@@ -29,7 +30,8 @@
                     <DataTemplate x:DataType="data:Manga">
                         <Grid>
                             <StackPanel HorizontalAlignment="Stretch">
-                                <Image Source="{x:Bind Cover.Thumbnail256Px.OriginalString}" HorizontalAlignment="Stretch" Height="320"></Image>
+                                <uc:ImageTest UriSource="{x:Bind Cover.Thumbnail256Px}" HorizontalAlignment="Stretch" Height="320" />
+                                <!--<Image Source="{x:Bind Cover.Thumbnail256Px.OriginalString}" HorizontalAlignment="Stretch" Height="320"></Image>-->
                                 <TextBlock FontSize="16" Text="{x:Bind Title.EnglishOrDefault}" TextWrapping="Wrap" Height="60" HorizontalAlignment="Center"></TextBlock>
                             </StackPanel>
                         </Grid>
