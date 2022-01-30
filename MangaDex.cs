@@ -1,5 +1,6 @@
 ﻿using MangaDexSharp;
 using MangaDexSharp.Collections;
+using MangaDexSharp.Extensions.Search;
 using MangaDexSharp.Parameters;
 using MangaDexSharp.Parameters.Chapter;
 using MangaDexSharp.Parameters.Follows;
@@ -20,8 +21,10 @@ namespace UWP_MangaDexApp
         public MangaDex(string Token)
         {
             Client = new MangaDexClient();
+            SearchEngine = new MangaSearchEngine(Client);
             MangaFeed = new ObservableCollection<Manga>();
             FollowedFeed = new ObservableCollection<Manga>();
+            SearchResult = new ObservableCollection<Manga>();
             SeasonalManga = new ObservableCollection<Manga>();
             Start(Token);
         }
@@ -30,7 +33,9 @@ namespace UWP_MangaDexApp
         public ObservableCollection<Manga> FollowedFeed { get; }
         public int FollowedFeedOffset { get; set; }
         public ObservableCollection<Manga> MangaFeed { get; }
+        public ObservableCollection<Manga> SearchResult { get; }
         public int MangaFeedOffset { get; set; }
+        public MangaSearchEngine SearchEngine { get; set; }
         public ObservableCollection<Manga> SeasonalManga { get; }
         private Settings.Settings.SettingsClass Settings => MainWindow.SettingsP.GetSettings();
 
@@ -100,7 +105,6 @@ namespace UWP_MangaDexApp
                 // i.Cover = await i.GetMainCover();
             }
         }
-
         public async void LoadMore()
         {
             if (FollowedFeed.Count < 21)
@@ -154,7 +158,54 @@ namespace UWP_MangaDexApp
             await LoadMangaFeed();
             LoadMore();
         }
+        private IPaginatedCollection<Manga> CurrentSearch = null;
+        public async Task Search(string TitleName, MangaSearchOrder order = MangaSearchOrder.MostFollows)
+        {
+            SearchResult.Clear();
+            ResetSearch();
+            SearchEngine.ItemsPerPage = 10;
+            SearchEngine.Title = TitleName;
+            SearchEngine.SearchOrder = order;
+            try
+            {
+                CurrentSearch = await SearchEngine.Search();
+                foreach(var manga in CurrentSearch.CurrentPage)
+                {
+                    try
+                    {
+                        manga.Cover = await manga.GetMainCover();
+                    }
+                    catch
+                    { }
+                    SearchResult.Add(manga);
+                }
+            }
+            catch
+            {
+                CurrentSearch = null;
+            }
 
+        }
+        public async Task SearchMore()
+        {
+            if (CurrentSearch == null || CurrentSearch.TotalPages <= CurrentSearch.Page) return;
+            await CurrentSearch.NextPage();
+            foreach(var manga in CurrentSearch.CurrentPage)
+            {
+                try
+                {
+                    manga.Cover = await manga.GetMainCover();
+                }
+                catch
+                { }
+                SearchResult.Add(manga);
+            }
+        }
+        public void ResetSearch()
+        {
+            CurrentSearch = null;
+            SearchEngine.ResetFilters();
+        }
         public async void Start(string Token)
         {
             await TryLogin(Token);

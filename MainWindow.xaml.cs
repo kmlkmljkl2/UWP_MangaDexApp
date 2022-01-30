@@ -121,7 +121,8 @@ namespace UWP_MangaDexApp
 
         private async void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MangaFeed.ItemsSource == Dex.FollowedFeed)
+            var button = (Microsoft.UI.Xaml.Controls.Primitives.ToggleButton)sender;
+            if (button.IsChecked == false)
             {
                 FollowedFeedScrollOffset = MangaFeedScroll.VerticalOffset;
                 MangaFeed.ItemsSource = Dex.MangaFeed;
@@ -197,6 +198,8 @@ namespace UWP_MangaDexApp
                         await Dex.LoadMangaFeed();
                     if (MangaFeed.ItemsSource == Dex.FollowedFeed)
                         await Dex.LoadFollowedManga();
+                    if (MangaFeed.ItemsSource == Dex.SearchResult)
+                        await Dex.SearchMore();
                 }
                 catch (Exception ex)
                 {
@@ -207,9 +210,42 @@ namespace UWP_MangaDexApp
                 GrabbingMangaFeed = false;
             }
         }
-
-        private void Searchbar_TextChanged(object sender, TextChangedEventArgs e)
+        private bool Searching = false;
+        private async void Searchbar_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if(Searching) return;
+            Searching = true;
+            var box = (TextBox)sender;
+            string text = box.Text;
+            while (true)
+            {
+                if (box.Text == "")
+                    break;
+                await Task.Delay(500);
+                if (box.Text == text)
+                {
+                    Searching = false;
+                    break;
+                }
+                else
+                    text = box.Text;
+            }
+            if (text == "")
+            {
+                if (ToggBTN.IsChecked == false)
+                {
+                    MangaFeed.ItemsSource = Dex.MangaFeed;
+                }
+                else
+                {
+                    MangaFeed.ItemsSource = Dex.FollowedFeed;
+                }
+                Searching = false;
+                return;
+            }
+            await Dex.Search(box.Text);
+            MangaFeed.ItemsSource = Dex.SearchResult;
+           
         }
 
         public void SetAppName(string Name = "MangaDexApp")

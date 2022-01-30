@@ -32,6 +32,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="MangaDexSharp.Extensions.Search">
+      <HintPath>..\Dll\MangaDexSharp.Extensions.Search.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Update="Settings\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

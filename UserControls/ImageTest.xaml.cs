@@ -20,6 +20,7 @@ namespace UWP_MangaDexApp.UserControls
         {
             set
             {
+                if (value == null) return;
                 if (Image.Source != value)
                 {
                     value.DownloadProgress += Value_DownloadProgress;
@@ -34,6 +35,7 @@ namespace UWP_MangaDexApp.UserControls
         {
             set
             {
+                if(value == null) return;
                 BitmapImage bit = new BitmapImage(value);
                 if (Image.Source == bit) return;
 
@@ -51,6 +53,10 @@ namespace UWP_MangaDexApp.UserControls
 
         private void Value_DownloadProgress(object sender, DownloadProgressEventArgs e)
         {
+            if(Ring == null)
+            {
+                return;
+            }
             Ring.Value = e.Progress;
             if (e.Progress == 100)
             {

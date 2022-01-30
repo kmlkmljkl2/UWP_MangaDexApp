@@ -77,7 +77,7 @@
         <ComboBox Grid.Row="0" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <ComboBoxItem Content="ByDate" IsSelected="True" />
         </ComboBox>
-        <TextBox  Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextChanged="Searchbar_TextChanged"></TextBox>
+        <TextBox  Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextChanged="Searchbar_TextChanged"/>
         <Button Content="LoadMore" Click="LoadMoreBTN_Click" VerticalAlignment="Stretch" Background="{x:Null}" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="0" />
         <Button Content="Refresh" Click="RefreshBTN_Click" Grid.Column="2" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{x:Null}" />
         <Button Content="Profile" Click="ProfileBTN_Click" Grid.Row="1" VerticalAlignment="Stretch" Background="{x:Null}" HorizontalAlignment="Stretch" />
