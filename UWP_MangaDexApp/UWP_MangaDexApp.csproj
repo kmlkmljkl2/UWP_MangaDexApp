@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>UWP_MangaDexApp</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>x86;x64;arm64</Platforms>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+    <UseWinUI>true</UseWinUI>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="References\**" />
+    <EmbeddedResource Remove="References\**" />
+    <None Remove="References\**" />
+    <Page Remove="References\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ProjectReunion" Version="0.8.12" />
+    <PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.8.12" />
+    <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.8.12" />
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\mangadex-sharp\src\MangaDexSharp\MangaDexSharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MangaDexSharp.Extensions.Search">
+      <HintPath>References\MangaDexSharp.Extensions.Search.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

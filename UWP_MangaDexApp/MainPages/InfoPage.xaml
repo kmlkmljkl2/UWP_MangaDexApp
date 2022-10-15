@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="UWP_MangaDexApp.MainPages.InfoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:MangaDexSharp.Resources"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180" />
+            <ColumnDefinition Width="191" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="110*" />
+            <RowDefinition Height="379*" />
+            <RowDefinition Height="55*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="372*" />
+        </Grid.RowDefinitions>
+        <Image x:Name="Cover" VerticalAlignment="Top"  HorizontalAlignment="Stretch" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Row="1" />
+        <TextBlock Grid.Column="2" x:Name="Title" IsTextSelectionEnabled="True" FontSize="48" TextWrapping="Wrap" Grid.RowSpan="2"></TextBlock>
+        <ScrollViewer Grid.Column="2" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <TextBlock Grid.Column="2" Grid.Row="2" IsTextSelectionEnabled="True" FontSize="24" x:Name="Description" TextWrapping="Wrap" />
+        </ScrollViewer>
+
+        <ScrollViewer x:Name="ChapterScrollView" Grid.RowSpan="4"  Grid.Column="2" Grid.Row="3" Visibility="Visible">
+            <ListView x:Name="List" x:FieldModifier="public" ItemsSource="{x:Bind ChapterList, Mode=OneWay}" Visibility="Visible" PointerWheelChanged="ChapterScrollView_PointerWheelChanged" RightTapped="List_RightTapped" IsRightTapEnabled="True" IsItemClickEnabled="True" IsTapEnabled="True" ItemClick="List_ItemClick" ManipulationMode="Scale">
+                <ListView.Resources>
+                    <MenuFlyout x:Name="ListViewMenuFlyout">
+                        <MenuFlyoutItem Text="Mark as Unread" Click="MenuFlyoutItem_Click" Tag="unread" />
+                        <MenuFlyoutItem Text="Mark as Read" Click="MenuFlyoutItem_Click" Tag="read" />
+                        <MenuFlyoutItem Text="Discord" x:Name="DiscordFlyout" Click="MenuFlyoutItem_Click" Tag="discord" />
+                    </MenuFlyout>
+                </ListView.Resources>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="data:Chapter">
+                        <StackPanel Orientation="Horizontal" Opacity="{x:Bind Opacity.Data, Mode=OneWay}">
+                            <TextBlock Text="{x:Bind ReturnInfoItem}" FontFamily="Courier New" FontWeight="Bold"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+        <TextBlock Grid.Row="3" Text="Status:" TextWrapping="Wrap" TextAlignment="Left" IsTextScaleFactorEnabled="True" FontSize="24" Foreground="#FF00629B" Grid.ColumnSpan="2" />
+        <ComboBox x:Name="StatusComboBox"  Grid.Row="5" ItemsSource="{x:Bind MangaReadings, Mode=OneTime}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="StatusComboBox_SelectionChanged" Grid.ColumnSpan="2" />
+        <Button Content="Back" VerticalAlignment="Stretch" Opacity=".3" HorizontalAlignment="Stretch" Click="BackBTN_Click" Background="{x:Null}" />
+        <TextBlock Grid.Row="4" Text="{x:Bind Status.Data, Mode=OneWay}" VerticalAlignment="Stretch" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" />
+        <ScrollViewer Grid.Row="6" Grid.ColumnSpan="2">
+            <TextBlock x:Name="TagArea" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="{x:Bind Tags.Data, Mode=OneWay}" Opacity=".7" FontSize="16"  TextWrapping="WrapWholeWords">
+            </TextBlock>
+        </ScrollViewer>
+    </Grid>
+</Page>
