@@ -9,6 +9,6 @@
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
         <!--Allignements wont apply for some reason-->
         <ProgressRing x:Name="Ring" IsIndeterminate="False" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Blue"/>
-        <Image x:Name="Image" Visibility="Collapsed"/>
+        <Image x:Name="PageImage" Visibility="Collapsed"/>
     </Grid>
 </UserControl>

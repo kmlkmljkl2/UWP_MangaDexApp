@@ -2,6 +2,8 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
+using System.Net.Http;
+using UWP_MangaDexApp.UserControls;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -13,6 +15,7 @@ namespace UWP_MangaDexApp.MainPages
     /// </summary>
     public sealed partial class ReadPage : Page
     {
+        private static HttpClient _Client = new HttpClient();
         public ReadPage()
         {
             this.InitializeComponent();
@@ -25,6 +28,12 @@ namespace UWP_MangaDexApp.MainPages
 
         public void ClearItems()
         {
+            //foreach(ImageTest i in list.Items)
+            //{
+            //    i.Height = 0;
+            //    i.Width = 0;
+            //}
+
             list.Items.Clear();
             
             GC.Collect();
