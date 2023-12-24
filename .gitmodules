@@ -1,0 +1,3 @@
+[submodule "mangadex-sharp"]
+	path = mangadex-sharp
+	url = https://github.com/kmlkmljkl2/mangadex-sharp
