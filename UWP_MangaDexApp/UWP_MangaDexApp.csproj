@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\mangadex-sharp\src\MangaDexSharp\MangaDexSharp.csproj" />
+    <ProjectReference Include="..\mangadex-sharp\src\MangaDexSharp\MangaDexSharp.csproj" />
   </ItemGroup>
 
   <ItemGroup>
