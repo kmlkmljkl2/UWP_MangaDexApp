@@ -49,7 +49,8 @@ namespace UWP_MangaDexApp
 
             SetAppName();
             StartPage = Content;
-            Dex = new MangaDex(Token);
+            Dex = new MangaDex();
+            Dex.Start(Token);
 
             //Load Settings Start app
         }
@@ -59,7 +60,7 @@ namespace UWP_MangaDexApp
             LocalSettings.Values[LocalData.Token] = null;
         }
 
-        public void SaveSettings(string UserName = null, string Token = null)
+        public void SaveSettings(string UserName = null, string Token = null, string ClientId = null, string ClientSecret = null)
         {
             if (UserName != null)
             {
@@ -69,6 +70,14 @@ namespace UWP_MangaDexApp
             {
                 LocalSettings.Values[LocalData.Token] = Token;
             }
+            if (ClientId != null)
+            {
+                LocalSettings.Values[LocalData.ClientId] = ClientId;
+            }
+            if (ClientSecret != null)
+            {
+                LocalSettings.Values[LocalData.ClientSecret] = ClientSecret;
+            }   
         }
 
         private void MangaFeed_ItemClick(object sender, ItemClickEventArgs e)

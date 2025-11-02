@@ -8,8 +8,8 @@
 
   <Identity
     Name="3738be5e-585d-4c04-9cd9-7b2afb3a3ab4"
-    Publisher="CN=kevin"
-    Version="1.0.0.0" />
+    Publisher="CN=nudelfee"
+    Version="1.0.1.0" />
 
   <Properties>
     <DisplayName>UWP_MangaDexApp (Package)</DisplayName>

@@ -19,6 +19,7 @@ namespace UWP_MangaDexApp.MainPages
         public ReadPage()
         {
             this.InitializeComponent();
+            NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Required;
         }
 
         public void AddImage(Uri Image)

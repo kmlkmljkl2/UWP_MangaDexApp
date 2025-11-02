@@ -28,13 +28,19 @@
                 <ColumnDefinition Width="633*" />
             </Grid.ColumnDefinitions>
             <TextBlock HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" FontSize="26" Text="Username:" VerticalAlignment="Center" />
-            <TextBox x:Name="UsernameBox" Grid.Column="1" HorizontalAlignment="Stretch"  Grid.Row="1" FontSize="26" TextWrapping="Wrap" VerticalAlignment="Center" PlaceholderText="Username" />
+            <TextBox x:Name="UsernameBox" Text="{x:Bind UserName.Data, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Stretch"  Grid.Row="1" FontSize="26" TextWrapping="Wrap" VerticalAlignment="Center" PlaceholderText="Username" />
+            <TextBox x:Name="ClientIdBox" Text="{x:Bind ClientId.Data, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Stretch"  Grid.Row="3" FontSize="26" TextWrapping="Wrap" VerticalAlignment="Center" PlaceholderText="ClientId" />
+            <TextBox x:Name="ClientSecretBox" Text="{x:Bind ClientSecret.Data, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Stretch"  Grid.Row="4" FontSize="26" TextWrapping="Wrap" VerticalAlignment="Center" PlaceholderText="ClientSecret" />
+
             <TextBlock HorizontalAlignment="Center"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" FontWeight="Bold" FontSize="32" TextWrapping="Wrap" Text="Please login" VerticalAlignment="Center" />
             <TextBlock HorizontalAlignment="Center"  Grid.Row="2" TextWrapping="Wrap" FontSize="26" Text="Password:" VerticalAlignment="Center" />
+            <TextBlock HorizontalAlignment="Center"  Grid.Row="3" TextWrapping="Wrap" FontSize="26" Text="ClientId:" VerticalAlignment="Center" />
+            <TextBlock HorizontalAlignment="Center"  Grid.Row="4" TextWrapping="Wrap" FontSize="26" Text="ClientSecret:" VerticalAlignment="Center" />
+
             <PasswordBox x:Name="PasswordBox" KeyDown="PasswordBox_KeyDown" Grid.Column="1" HorizontalAlignment="Stretch"  Grid.Row="2" FontSize="26" VerticalAlignment="Center" PlaceholderText="Password" />
-            <Button Grid.Column="1" x:Name="LoginButton" Click="LoginBTN_Click" Content="Login" Grid.Row="3" VerticalAlignment="Stretch" FontSize="26" Background="{x:Null}" HorizontalAlignment="Stretch" />
-            <TextBlock x:Name="ErrorBox" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" TextWrapping="Wrap" Text="{x:Bind ErrorMessage.Data, Mode=OneWay}" FontSize="26" VerticalAlignment="Center" Foreground="Red" />
-            <RadioButton Content="Remember Me" x:Name="RememberMe" Grid.Row="3" Grid.Column="2" FontSize="24"  VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+            <Button Grid.Column="1" x:Name="LoginButton" Click="LoginBTN_Click" Content="Login" Grid.Row="5" VerticalAlignment="Stretch" FontSize="26" Background="{x:Null}" HorizontalAlignment="Stretch" />
+            <TextBlock x:Name="ErrorBox" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="6" TextWrapping="Wrap" Text="{x:Bind ErrorMessage.Data, Mode=OneWay}" FontSize="26" VerticalAlignment="Center" Foreground="Red" />
+            <RadioButton Content="Remember Me" x:Name="RememberMe" Grid.Row="5" Grid.Column="2" FontSize="24"  VerticalAlignment="Center" HorizontalAlignment="Stretch" />
         </Grid>
 
         <Grid x:Name="AccountGrid" Visibility="Collapsed" Grid.ColumnSpan="2" Grid.RowSpan="2">

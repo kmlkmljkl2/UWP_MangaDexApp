@@ -49,29 +49,6 @@
                 </GridView.ItemContainerStyle>
             </GridView>
         </ScrollViewer>
-        <!--<FlipView Grid.Row="2" x:Name="SeasonalManga" ItemsSource="{x:Bind PriDex.SeasonalManga, Mode=OneWay}" x:FieldModifier="public" Grid.ColumnSpan="6" Tapped="SeasonalManga_Tapped">
-            <FlipView.ItemTemplate>
-                <DataTemplate x:DataType="data:Manga">
-                    <StackPanel Orientation="Horizontal">
-                        -->
-        <!--MaxHeight="259"-->
-        <!--
-                        <Image Source="{x:Bind Cover.Thumbnail256Px.OriginalString}"  ></Image>
-                        -->
-        <!--MaxWidth="256" MaxHeight="259"-->
-        <!--
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
-                            -->
-        <!--MaxWidth="1080"-->
-        <!--
-                            <TextBlock Text="{x:Bind Title.EnglishOrDefault}"></TextBlock>
-                            <NavigationViewItemSeparator></NavigationViewItemSeparator>
-                            <TextBlock Text="{x:Bind Description.EnglishOrDefault}" TextWrapping="WrapWholeWords"></TextBlock>
-                        </StackPanel>
-                    </StackPanel>
-                </DataTemplate>
-            </FlipView.ItemTemplate>
-        </FlipView>-->
         <Button Content="Settings" Click="SettingsBTN_Click"  Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{x:Null}" />
         <ToggleButton Content="FollowedManga" Grid.Row="1" Grid.RowSpan="1" x:Name="ToggBTN" Grid.Column="1" Background="{x:Null}" Click="ToggleButton_Click" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
         <ComboBox Grid.Row="0" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">

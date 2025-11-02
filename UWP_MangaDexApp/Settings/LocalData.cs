@@ -6,5 +6,8 @@
         public const string Token = "token";
         public const string ItemsPerPage = "perpage";
         public const string ClientSettings = "Settings";
+        public const string ClientId = "clientId";
+        public const string ClientSecret = "clientsecret";
+
     }
 }

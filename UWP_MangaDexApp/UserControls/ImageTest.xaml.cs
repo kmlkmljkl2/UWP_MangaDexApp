@@ -17,59 +17,17 @@ namespace UWP_MangaDexApp.UserControls
 {
     public sealed partial class ImageTest : UserControl, INotifyPropertyChanged
     {
-       // private static HttpClient _httpClient = new HttpClient();
         public ImageTest()
         {
             this.InitializeComponent();
         }
-
-        //public BitmapImage Source
-        //{
-        //    set
-        //    {
-        //        if (value == null) return;
-        //        if (PageImage.Source != value)
-        //        {
-        //            value.DownloadProgress += Value_DownloadProgress;
-        //            PageImage.Source = value;
-        //            OnPropertyChanged();
-        //            value = null;
-        //        }
-
-        //    }
-        //    get => (BitmapImage)PageImage.Source;
-        //}
 
         public Uri UriSource
         {
             set
             {
                 if(value == null) return;
-
                 SetImage(value);
-             //   OnPropertyChanged();
-
-                return;
-
-                //BitmapImage bit = new BitmapImage()
-                //{
-                //    CreateOptions = BitmapCreateOptions.IgnoreImageCache
-                //};
-                //bit.UriSource = value;
-                //if (PageImage.Source == bit)
-                //{
-                //    bit = null;
-                //    return; 
-                //}
-
-
-                //bit.DownloadProgress += Value_DownloadProgress;
-                //bit.ImageFailed += Bit_ImageFailed;
-                //PageImage.Source = bit;
-
-
-                //bit = null;
-                
                
             }
         }

@@ -8,17 +8,20 @@ using MangaDexSharp.Parameters.Manga;
 using MangaDexSharp.Parameters.Order;
 using MangaDexSharp.Parameters.Order.Chapter;
 using MangaDexSharp.Resources;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using UWP_MangaDexApp.Settings;
+using Windows.Storage;
 
 namespace UWP_MangaDexApp
 {
     public class MangaDex
     {
-        public MangaDex(string Token)
+        public MangaDex()
         {
             Client = new MangaDexClient();
             SearchEngine = new MangaSearchEngine(Client);
@@ -26,7 +29,6 @@ namespace UWP_MangaDexApp
             FollowedFeed = new ObservableCollection<Manga>();
             SearchResult = new ObservableCollection<Manga>();
             SeasonalManga = new ObservableCollection<Manga>();
-            Start(Token);
         }
 
         public MangaDexClient Client { get; }
@@ -225,10 +227,13 @@ namespace UWP_MangaDexApp
             {
                 try
                 {
+                    ApplicationDataContainer LocalSettings = ApplicationData.Current.LocalSettings;
+                    UserCredentials user = new UserCredentials(LocalSettings.Values[LocalData.UserName] as string, "", LocalSettings.Values[LocalData.ClientId] as string, LocalSettings.Values[LocalData.ClientSecret] as string);
+                    MainWindow.Dex.Client.SetUserCredentials(user);
                     await Client.Auth.LoginWithToken(Token);
                     MainWindow.MainPage.SaveSettings(Token: Client.Auth.LastRefreshToken);
                 }
-                catch
+                catch (Exception ex)
                 {
                     MainWindow.MainPage.ResetToken();
                 }

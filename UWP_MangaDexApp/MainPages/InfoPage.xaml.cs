@@ -41,6 +41,7 @@ namespace UWP_MangaDexApp.MainPages
         {
             if (CurrentManga != null)
                 MainWindow.MainPage.SetAppName(CurrentManga.Title.EnglishOrDefault);
+            NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Required;
         }
 
         public bool CameFromSettings { get; set; }
@@ -257,8 +258,11 @@ namespace UWP_MangaDexApp.MainPages
             {
                 ta += i.Name + ",  ";
             }
-            ta = ta.TrimEnd().Remove(ta.TrimEnd().Length - 1);
-
+            ta = ta.TrimEnd();
+            if(ta.Length > 0)
+            {
+                ta = ta.Remove(ta.Length - 1);
+            }
             return ta;
         }
     }

@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using UWP_MangaDexApp.Tests;
+using Windows.Storage;
 using Windows.System;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -18,6 +19,10 @@ namespace UWP_MangaDexApp.Settings
         private bool LoggedIn { get => MainWindow.Dex.Client.IsLoggedIn; }
         private string ProfilePicURL { get => "https://mangadex.org/avatar.png"; }
         private FakeClasses.ObservableString UserName { get; } = new FakeClasses.ObservableString();
+        private FakeClasses.ObservableString ClientSecret { get; } = new FakeClasses.ObservableString();
+
+        private FakeClasses.ObservableString ClientId { get; } = new FakeClasses.ObservableString();
+
         private FakeClasses.ObservableString Roles { get; } = new FakeClasses.ObservableString();
         private FakeClasses.ObservableString GuiD { get; } = new FakeClasses.ObservableString();
         private FakeClasses.ObservableString ErrorMessage { get; } = new FakeClasses.ObservableString();
@@ -39,6 +44,20 @@ namespace UWP_MangaDexApp.Settings
             {
                 ShowLogin();
             }
+            var dataContainer = ApplicationData.Current.LocalSettings;
+            if(dataContainer.Values.ContainsKey(LocalData.ClientSecret))
+            {
+                ClientSecret.Data = dataContainer.Values[LocalData.ClientSecret] as string;
+            }
+            if(dataContainer.Values.ContainsKey(LocalData.ClientId))
+            {
+                ClientId.Data = dataContainer.Values[LocalData.ClientId] as string;
+            }
+            if(dataContainer.Values.ContainsKey(LocalData.UserName))
+            {
+                UserName.Data = dataContainer.Values[LocalData.UserName] as string;
+            }
+
         }
 
         private void HideLogin()
@@ -68,18 +87,24 @@ namespace UWP_MangaDexApp.Settings
             if (UsernameBox.Text != "" && PasswordBox.Password != "")
             {
                 MainWindow.Dex.Client.CleanCredentials();
-                UserCredentials user = new(UsernameBox.Text, null, PasswordBox.Password);
+                UserCredentials user = new UserCredentials(UsernameBox.Text, PasswordBox.Password, ClientIdBox.Text, ClientSecretBox.Text);
                 MainWindow.Dex.Client.SetUserCredentials(user);
                 try
                 {
+                    if (RememberMe.IsChecked == true)
+                    {
+                        MainWindow.MainPage.SaveSettings(UsernameBox.Text, MainWindow.Dex.Client.Auth.LastRefreshToken, ClientIdBox.Text, ClientSecretBox.Text);
+                    }
+
                     await MainWindow.Dex.Client.Auth.Login();
                     PasswordBox.Password = "";
                     await MainWindow.Dex.LoadFollowedManga();
                     MainWindow.Dex.LoadMore();
                     HideLogin();
+
                     if (RememberMe.IsChecked == true)
                     {
-                        MainWindow.MainPage.SaveSettings(UsernameBox.Text, MainWindow.Dex.Client.Auth.LastRefreshToken);
+                        MainWindow.MainPage.SaveSettings(UsernameBox.Text, MainWindow.Dex.Client.Auth.LastRefreshToken, ClientIdBox.Text, ClientSecretBox.Text);
                     }
                 }
                 catch (Exception ex)
